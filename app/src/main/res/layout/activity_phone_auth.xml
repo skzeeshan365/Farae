@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Sidra will send you a messege with OTP"
+        android:text="Farae will send you a messege with OTP"
         android:textColor="#9C9898"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="@+id/phonelb"

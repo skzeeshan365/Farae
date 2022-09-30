@@ -24,23 +24,23 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MousChat"
+        android:theme="@style/Theme.Farae"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".Activities.Splash"
             android:exported="false"
-            android:theme="@style/Theme.MousChat.NoActionBar.Fullscreen" />
+            android:theme="@style/Theme.Farae.NoActionBar.Fullscreen" />
         <activity
             android:name=".Activities.updateApp"
             android:launchMode="singleTop"
             android:exported="false" />
         <activity
             android:name=".Activities.view_media"
-            android:theme="@style/Theme.MousChat.NoActionBar.Fullscreen"
+            android:theme="@style/Theme.Farae.NoActionBar.Fullscreen"
             android:exported="false" />
         <activity
             android:name=".Activities.ChatActivity"
-            android:theme="@style/Theme.MousChat.NoActionBar." />
+            android:theme="@style/Theme.Farae.NoActionBar." />
         <activity android:name=".Activities.SetupProfileActivity" />
         <activity
             android:name=".Activities.OTPActivity"
