@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.reiserx.farae.R;
@@ -27,6 +28,8 @@ public class OTPActivity extends AppCompatActivity {
     String verificationId;
 
     ProgressDialog dialog;
+
+    String TAG = "OTPACT";
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -65,6 +68,7 @@ public class OTPActivity extends AppCompatActivity {
                     public void onVerificationFailed(@NonNull FirebaseException e) {
                         dialog.dismiss();
                         Toast.makeText(OTPActivity.this, "failed", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, e.toString());
                     }
 
                     @Override

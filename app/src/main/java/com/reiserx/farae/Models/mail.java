@@ -1,8 +1,9 @@
 package com.reiserx.farae.Models;
 
 public class mail {
-    String title, message;
+    String title, message, link;
     int id;
+    boolean clickable;
 
     public mail() {
     }
@@ -35,5 +36,21 @@ public class mail {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public boolean isClickable() {
+        return clickable;
+    }
+
+    public void setClickable(boolean clickable) {
+        this.clickable = clickable;
     }
 }

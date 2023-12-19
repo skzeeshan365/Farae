@@ -3,8 +3,7 @@ plugins {
 }
 apply plugin: 'com.google.gms.google-services'
 android {
-    compileSdkVersion 32
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 33
 
     buildFeatures {
         viewBinding true
@@ -13,9 +12,9 @@ android {
     defaultConfig {
         applicationId "com.reiserx.farae"
         minSdkVersion 23
-        targetSdkVersion 32
-        versionCode 9
-        versionName "1.8"
+        targetSdkVersion 33
+        versionCode 11
+        versionName "2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.debug
@@ -31,6 +30,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'com.reiserx.farae'
 }
 
 dependencies {
@@ -44,7 +44,7 @@ dependencies {
 
     implementation 'com.github.darshan-miskin:PinView-Android:v1.1.8'
 
-    implementation platform('com.google.firebase:firebase-bom:28.0.1')
+    implementation platform('com.google.firebase:firebase-bom:32.6.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-database'

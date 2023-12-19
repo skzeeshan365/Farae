@@ -1,6 +1,8 @@
 package com.reiserx.farae.Activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -59,11 +61,22 @@ public class updateApp extends AppCompatActivity {
 
         binding.button5.setOnClickListener(view -> {
             Toast.makeText(this, "preparing...", Toast.LENGTH_SHORT).show();
-            StorageReference reference = storage.getReference().child("App").child("Update").child("app-release.apk");
-            reference.getDownloadUrl().addOnSuccessListener(uri -> {
-                String url = uri.toString();
-            fileDownloader asyncTask = new fileDownloader(this);
-            asyncTask.execute(url);
+            database.getReference("Administration").child("App").child("Link").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        String link = snapshot.getValue(String.class);
+                        if (link != null) {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+                            startActivity(browserIntent);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
             });
         });
     }

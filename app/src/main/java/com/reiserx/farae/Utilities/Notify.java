@@ -54,7 +54,7 @@ public class Notify {
                 json.put("to", fcmToken);
                 RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json.toString());
                 Request request = new Request.Builder()
-                        .header("Authorization", context.getString(R.string.serverKey))
+                        .header("Authorization", KEYS.FCM_KEY)
                         .url(context.getString(R.string.fcm))
                         .post(body)
                         .build();

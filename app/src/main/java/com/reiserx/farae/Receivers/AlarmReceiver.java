@@ -1,5 +1,6 @@
 package com.reiserx.farae.Receivers;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -22,10 +23,11 @@ public class AlarmReceiver extends BroadcastReceiver {
         setAlarm(context);
     }
 
+    @SuppressLint("ScheduleExactAlarm")
     public void setAlarm(Context context) {
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, AlarmReceiver.class);
-        PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);
+        PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, PendingIntent.FLAG_IMMUTABLE);
         assert am != null;
         am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, (System.currentTimeMillis() / 1000L + 15L) * 1000L, pi); //Next alarm in 15s
     }

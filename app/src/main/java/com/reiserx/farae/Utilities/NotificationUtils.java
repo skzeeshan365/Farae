@@ -52,15 +52,15 @@ public class NotificationUtils {
 
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent contentIntent = stackBuilder.getPendingIntent(0,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_UPDATE_CURRENT  | PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder notify_bulder = new NotificationCompat.Builder(context, channel_id);
         notify_bulder.setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.drawable.ic_send)
+                .setSmallIcon(R.drawable.love)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setContentText(content)
+                .setContentText("Tap to view")
                 .setContentIntent(contentIntent)
                 .setContentTitle(title)
                 .setContentInfo("info");
@@ -92,7 +92,7 @@ public class NotificationUtils {
 
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent contentIntent = stackBuilder.getPendingIntent(0,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_UPDATE_CURRENT  | PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder notify_bulder = new NotificationCompat.Builder(context, channel_id);
         notify_bulder.setAutoCancel(true)

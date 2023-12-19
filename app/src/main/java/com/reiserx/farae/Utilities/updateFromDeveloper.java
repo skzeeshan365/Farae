@@ -3,7 +3,10 @@ package com.reiserx.farae.Utilities;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -30,7 +33,15 @@ public class updateFromDeveloper {
                             AlertDialog.Builder builder = new AlertDialog.Builder(context);
                             builder.setTitle(mail.getTitle());
                             builder.setMessage(mail.getMessage());
-                            builder.setPositiveButton("ok", null);
+                            if (mail.isClickable()) {
+                                builder.setPositiveButton("open", (dialogInterface, i) -> {
+                                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mail.getLink()));
+                                    context.startActivity(browserIntent);
+                                });
+                                builder.setNegativeButton("cancel", null);
+                            } else {
+                                builder.setPositiveButton("ok", null);
+                            }
                             builder.show();
                             myEdit.putInt("id", mail.getId());
                             myEdit.apply();

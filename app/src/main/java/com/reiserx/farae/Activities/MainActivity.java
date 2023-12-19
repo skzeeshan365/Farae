@@ -123,15 +123,6 @@ public class MainActivity extends AppCompatActivity {
                 dbHandler.createUserTable();
                 dbHandler.createLastMessageTable();
 
-                Intent intent = new Intent();
-                String packageName = getPackageName();
-                PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
-                if (!pm.isIgnoringBatteryOptimizations(packageName)) {
-                    intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
-                    intent.setData(Uri.parse("package:" + packageName));
-                    startActivity(intent);
-                }
-
                 database = FirebaseDatabase.getInstance();
                 users = new ArrayList<>();
                 usersAdapter = new UsersAdapter(this, users);
@@ -202,6 +193,8 @@ public class MainActivity extends AppCompatActivity {
                 updateFromDeveloper update = new updateFromDeveloper();
                 update.announcement(MainActivity.this);
                 getInfos(FirebaseAuth.getInstance().getUid());
+
+                remort();
             } catch (Exception e) {
                 ExceptionHandler exceptionHandler = new ExceptionHandler(e, FirebaseAuth.getInstance().getUid());
                 exceptionHandler.upload();
@@ -456,13 +449,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void remort() {
+
         FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setMinimumFetchIntervalInSeconds(3600)
+                .setMinimumFetchIntervalInSeconds(3)
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
 
+        Log.d(TAG, "1");
+
         mFirebaseRemoteConfig.fetchAndActivate().addOnSuccessListener(aBoolean -> {
+            Log.d(TAG, "2");
             if (mFirebaseRemoteConfig.getBoolean("isBDS")) {
                 String title = mFirebaseRemoteConfig.getString("title");
                 setTitle(title);
@@ -475,6 +472,10 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, Splash.class);
                     Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
                             android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+                    intent.putExtra("message_1", mFirebaseRemoteConfig.getString("Message_1"));
+                    intent.putExtra("message_2", mFirebaseRemoteConfig.getString("Message_2"));
+                    intent.putExtra("message_3", mFirebaseRemoteConfig.getString("Message_3"));
+                    intent.putExtra("message_4", mFirebaseRemoteConfig.getString("Message_4"));
                     startActivity(intent, bundle);
                     myEdit.putInt("id", (int) mFirebaseRemoteConfig.getLong("id"));
                     myEdit.apply();

@@ -39,10 +39,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
         remoteMessage.getData();
 
+
         Map<String, String> data = remoteMessage.getData();
         String title = data.get("title");
         String content = data.get("content");
         String id = data.get("id");
+
+        Log.d(TAG, title);
 
         JobUtil.scheduleJob(this);
         AlarmReceiver alarm = new AlarmReceiver();
